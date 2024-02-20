@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.scss'
-import { Home, Secon, Third } from './page';
+import { Home, Secon, Third, Form } from './page';
 import { Footer, Header } from './components'
 
 
@@ -29,6 +29,15 @@ function App() {
           <>
             <Header />
             <Third />
+            <Footer />
+          </>
+        } />
+        {/*  */}
+
+        <Route path='/Form' element={
+          <>
+            <Header />
+            <Form />
             <Footer />
           </>
         } />

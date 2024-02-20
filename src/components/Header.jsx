@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Enlas } from "./Enlas";
-// import {Enlas} from '/index.js'
 function Header() {
     // importo las variables isOpen y setIsOpen 
     const [isOpen, setIsOpen] = useState(false);
@@ -26,9 +25,10 @@ function Header() {
               bg-violet-600"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}>
-                <button
+                <button className="w-10 h-10 flex items-center justify-center"
                     onClick={handleMouseEnter}>
-                    Menu</button>
+                    <i className="fa-solid fa-bars"></i>
+                </button>
                 {/* nav */}
                 {isOpen && (
                     <nav>
@@ -38,6 +38,10 @@ function Header() {
                             </li>
                             <li>
                                 <Enlas src='/Third' name='Third' />
+                            </li>
+                            <li>
+                                <Enlas src='/Form' name='Form'
+                                />
                             </li>
                         </ul>
                     </nav>
