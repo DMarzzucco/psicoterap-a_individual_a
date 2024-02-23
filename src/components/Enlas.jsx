@@ -2,7 +2,11 @@ import { Link } from "react-router-dom"
 
 export const Enlas = ({ src, name }) => {
     return (
-        <Link to={src}>{name}</Link>
+        <li className="m-1 w-full grid justify-center items-center">
+            <Link className=" w-full bg-black hover:bg-white
+             text-white hover:text-black p-8"
+                to={src}>{name}</Link>
+        </li>
     )
 }
 export const CImg = ({ src, alt, onClick }) => {
@@ -33,5 +37,27 @@ export const Card = ({ title, img, prop, description }) => {
 
         </div>
 
+    )
+}
+export const BotonCOunter = ({ click, tip }) => {
+    return (
+        <div>
+            <button className=" bg-slate-700 
+            w-20 h-10 grid justify-center items-center"
+                onClick={click}>
+                <p>{tip}</p>
+            </button>
+        </div>
+    )
+}
+
+export const CalBt = ({ click, tip }) => {
+    return (
+        <>
+            <button onClick={click} className="
+            h-20 w-auto border border-black">
+                {tip}
+            </button>
+        </>
     )
 }

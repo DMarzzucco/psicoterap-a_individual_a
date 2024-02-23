@@ -1,4 +1,3 @@
-import react from "react";
 import { Card } from "../components/Enlas";
 // import {Card} from "./components"
 function Third() {
@@ -6,6 +5,7 @@ function Third() {
         <main>
             <section className="flex flex-col justify-center items-center">
                 <h1>Third</h1>
+                {/* searchbox */}
                 <div className="grid grid-cols-3 justify-center items-center">
                     <Card
                         img='/vite.svg'

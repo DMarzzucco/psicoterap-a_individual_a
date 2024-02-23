@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.scss'
-import { Home, Secon, Third, Form } from './page';
+import { Home, Secon, Third, Form, Calcul } from './page';
 import { Footer, Header } from './components'
 
 
@@ -33,7 +33,6 @@ function App() {
           </>
         } />
         {/*  */}
-
         <Route path='/Form' element={
           <>
             <Header />
@@ -41,6 +40,12 @@ function App() {
             <Footer />
           </>
         } />
+        {/*  */}
+        <Route path='/Calcu' element={<>
+          <Header />
+          <Calcul />
+          <Footer />
+        </>} />
       </Routes>
     </Router>
   )
