@@ -2,11 +2,22 @@ import React, { useState } from 'react';
 import { CalBt } from '../components/Enlas';
 
 function Calcul() {
+    // num= numero //setNum= envio de numero.. se declara el use state
+    // en este se declara dos parametros, la operacion y el resultado
+    // estas van acompañado de propiedades que vendrian a ser el resultado de este 
     const [num, setNum] = useState(
         { oper: '', result: '' }
     );
+    // esta funcion nos permite poder escribir los simbolos en la pantalla
+    // esta compore un parametro "event" 
     const escrito = (event) => {
+        //esta funcion nos permite que no se puedan escribir mas de 10 simbolos
+        // se declara priermo el numero, mas la operacion declarada en el usestate
+        // y luego se usa el metodo .length que nos permite leer los simbolos. recibiendo
+        // un simbolo mayor y igual al simbolo establecido.
         if (num.oper.length >= 10) return
+        // lo que sigue nos permite poder imprimir los simbolos en el span. 
+        // Esta es la declaracion de la funcion 
         setNum({
             ...num, oper: `${num.oper}` +
                 event.target.innerText
