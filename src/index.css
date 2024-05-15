@@ -2,3 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
+
+:root{
+    background: #1a1b1d;
+    color:aliceblue;
+    font-family: system-ui;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

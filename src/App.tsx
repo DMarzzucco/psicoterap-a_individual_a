@@ -1,13 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SGame from "./page/SeconGame";
 function App() {
 
   return (
     <Router>
       <Routes>
         <Route path="/" element={
-          <div>
-            This is the page
-          </div>
+          <SGame />
         }>
         </Route>
       </Routes>
