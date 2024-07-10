@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import "slick-carousel/slick/slick.scss";
-import "slick-carousel/slick/slick-theme.scss"
-import "./carousel.scss"
+import "./carousel.css"
 
 const Carousels: React.FC = ({ }) => {
     const [currentSlide, setCurrentSlide] = useState<number>(0);
-    
+
     const slides = ["slide 1", "slide 2", "slide 3"]
 
     const slideArrow = (op: "next" | "prev") => {
@@ -33,5 +31,6 @@ const Carousels: React.FC = ({ }) => {
             </div>
         </div>
     )
+   
 }
 export default Carousels

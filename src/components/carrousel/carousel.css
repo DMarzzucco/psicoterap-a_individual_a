@@ -1,3 +1,7 @@
+.SliderS{
+  height: auto;
+  position: relative;
+}
 .carousel {
     position: relative;
     width: 100%;
