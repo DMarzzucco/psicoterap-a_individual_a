@@ -1,6 +1,6 @@
 import { profileLogo } from "../assets/img";
 import { Profile, TitleComp } from "../components/assets/assets";
-import  Carousels  from "../components/carrousel/carousel";
+import  Carousels  from "../components/common/carrousel/carousel";
 
 function Home() {
     return (

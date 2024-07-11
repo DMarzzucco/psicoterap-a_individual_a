@@ -6,8 +6,12 @@ export default {
   ],
   theme: {
     extend: {
-      colors:{
+      colors: {
         lightDark: "#1b2024"
+      },
+      width: {
+        350: "350px",
+        300: "300px",
       }
     },
   },
