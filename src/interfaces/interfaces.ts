@@ -16,6 +16,12 @@ export interface SlideProps {
     text2: string;
     text3?: string;
 }
+export interface CompleteFormProp {
+    htmlFor: string;
+    title: string;
+    name: string;
+    placeholder: string
+}
 export interface BoxProp {
     children: React.ReactNode
     slides: SlideProps[]
