@@ -3,6 +3,7 @@ import { gridProps, infProps, LinkFProps, SlideBtn } from "../../interfaces/inte
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
 export const TitleComp: React.FC<gridProps> = ({ header, sub }) => {
     return (
         <div className="flex flex-col justify-center items-start">
@@ -44,6 +45,8 @@ export const ItemsInf: React.FC<infProps> = ({ icon, title }) => {
     )
 }
 //////////
+
+// }}}}
 export const SlidButton: React.FC<SlideBtn> = ({ click, icon }) => {
     return (
         <button onClick={click}>

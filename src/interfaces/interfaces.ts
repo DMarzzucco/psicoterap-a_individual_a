@@ -31,4 +31,6 @@ export interface infProps {
 export interface AuthProv { children: JSX.Element }
 export interface useContextProp {
     user?: string
+    openForm: boolean
+    handleButton: (op: "open" | "close") => void;
 }
