@@ -9,6 +9,21 @@ export interface LinkFProps {
     path: string;
     title: string
 }
+export interface SlideProps {
+    id: number;
+    title: string;
+    text1: string;
+    text2: string;
+    text3?: string;
+}
+export interface BoxProp {
+    children: React.ReactNode
+    slides: SlideProps[]
+}
+export interface SlideBtn {
+    click: () => void;
+    icon: IconDefinition;
+}
 export interface infProps {
     icon: IconDefinition;
     title: string;

@@ -1,38 +1,6 @@
 import React from "react";
 import { BoxSlider } from "./comp";
-
-export interface SlideProps {
-    id: number;
-    title: string;
-    text1: string;
-    text2: string;
-    text3?: string;
-}
-export const slides: SlideProps[] = [
-    {
-        id: 0,
-        title: "Terapia Individual",
-        text1: "Terapia para Adolescentes",
-        text2: "Terapia para Adultos",
-        text3: "Terapia para Personas Mayores"
-    },
-    {
-        id: 1,
-        title: "Asesoramiento Psicológico",
-        text1: "Orientación vocacional y profesional",
-        text2: "Asesoramiento en casos de estrés y ansiedad",
-        text3: "Manejo de la depresión"
-    },
-    {
-        id: 2,
-        title: "Modalidades de Atención",
-        text1: "Consultas presenciales",
-        text2: "Consultas remotas (videollamadas)",
-    },
-    // 
-    
-
-]
+import { slides } from "../../func/items";
 
 const Carousels: React.FC = () => {
     return (

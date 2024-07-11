@@ -1,28 +1,9 @@
-import { IconDefinition } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronLeft, faChevronRight } from "../../../assets/img"
 import React, { useState } from "react"
-import { SlideProps, slides } from "./carousel";
+import { BoxProp } from "../../../interfaces/interfaces"
+import { slides } from "../../func/items"
+import { SlidButton } from "../../assets/assets"
 
-
-//export tu interface 
-interface BoxProp {
-    children: React.ReactNode
-    slides: SlideProps[]
-}
-interface SlideBtn {
-    click: () => void;
-    icon: IconDefinition;
-}
-// export tu assets
-export const SlidButton: React.FC<SlideBtn> = ({ click, icon }) => {
-    return (
-        <button onClick={click}>
-            <FontAwesomeIcon icon={icon} />
-        </button>
-    )
-}
-// sss
 export const BoxSlider: React.FC<BoxProp> = ({ children }) => {
     const [curr, setCurr] = useState<number>(0)
 

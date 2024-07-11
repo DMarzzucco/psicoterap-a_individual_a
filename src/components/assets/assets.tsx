@@ -1,5 +1,5 @@
 import React from "react";
-import { gridProps, infProps, LinkFProps } from "../../interfaces/interfaces";
+import { gridProps, infProps, LinkFProps, SlideBtn } from "../../interfaces/interfaces";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -44,3 +44,10 @@ export const ItemsInf: React.FC<infProps> = ({ icon, title }) => {
     )
 }
 //////////
+export const SlidButton: React.FC<SlideBtn> = ({ click, icon }) => {
+    return (
+        <button onClick={click}>
+            <FontAwesomeIcon icon={icon} />
+        </button>
+    )
+}
