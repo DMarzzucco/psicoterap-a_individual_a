@@ -16,6 +16,7 @@ const AuthProvider: React.FC<AuthProv> = ({ children }) => {
     const [openForm, setOpenForm] = useState<boolean>(false)
     const [messageSent, setMessageSent] = useState<boolean>(false)
     const [sending, setSending] = useState<boolean>(false)
+
     const reForm = useRef<HTMLFormElement>(null);
 
     const sendEmail = async (e: React.FormEvent) => {
@@ -25,9 +26,15 @@ const AuthProvider: React.FC<AuthProv> = ({ children }) => {
         const template = "template_7yi1umj";
         const key = "iT8BqbWUbZqyQKCa9";
         try {
-            // const res = await emailjs.sendForm(serviceID, template, reForm.current, key)
-            // setMessageSent(true)
-            // return res
+            if (reForm.current) {
+                await emailjs.sendForm(serviceID, template, reForm.current, key)
+                setMessageSent(true)
+                console.log("Mensaje enviado ")
+                const timer = setTimeout(() => setMessageSent(false), 1000)
+                return () => clearTimeout(timer)
+            }
+            console.log("el error esta en la condicional de la linea 28")
+            throw new Error
         } catch (error) {
             console.log(error)
             throw new Error
@@ -48,7 +55,7 @@ const AuthProvider: React.FC<AuthProv> = ({ children }) => {
 
     // manejo de estados
     return (
-        <AuthContext.Provider value={{ openForm, handleButton, }}>
+        <AuthContext.Provider value={{ openForm, handleButton, sendEmail, reForm, messageSent, sending }}>
             {children}
         </AuthContext.Provider>
     )

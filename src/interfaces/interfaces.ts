@@ -1,4 +1,5 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import React from "react";
 
 export interface gridProps {
     img?: string;
@@ -39,4 +40,9 @@ export interface useContextProp {
     user?: string
     openForm: boolean
     handleButton: (op: "open" | "close") => void;
+    sendEmail: (e: React.FormEvent) => void;
+    reForm: React.RefObject<HTMLFormElement>;
+    // temporal
+    messageSent: boolean;
+    sending: boolean;
 }

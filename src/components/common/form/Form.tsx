@@ -1,13 +1,12 @@
-// import { useComps } from "../../../context/context";
-
-import { CompletForm, FormButton, TextareaForm } from "./compForms";
+import { useComps } from "../../../context/context";
+import { CompletForm, FormButton, Loader, TextareaForm } from "./compForms";
 
 function Form() {
-    // const {closeForm} =useComps ()
+    const { sendEmail, reForm} = useComps()
     return (
         <div className="rounded-xl border border-slate-400 absolute w-300 flex bg-slate-800 p-2 justify-center items-center">
             <FormButton />
-            <form className="flex flex-col justify-center items-center w-full">
+            <form onSubmit={sendEmail} ref={reForm} className="flex flex-col justify-center items-center w-full">
                 <CompletForm
                     htmlFor="name"
                     title="Nombre Completo"
@@ -34,8 +33,7 @@ function Form() {
                 />
                 <TextareaForm />
                 <button type="submit" value="Enviar" className='btSend'>Enviar</button>
-                {/* {sending && <Loader />}
-                {messageSent && <MessageConfirmation />} */}
+                <Loader />
             </form>
         </div>
     )

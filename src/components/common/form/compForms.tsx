@@ -1,6 +1,7 @@
 import React from "react"
 import { useComps } from "../../../context/context"
 import { CompleteFormProp } from "../../../interfaces/interfaces"
+import { Confirmation, LoaderComp } from "./loader"
 
 export const FormButton: React.FC = () => {
     const { handleButton } = useComps()
@@ -34,6 +35,15 @@ export const CompletForm: React.FC<CompleteFormProp> = ({ htmlFor, title, name, 
                 placeholder={placeholder}
                 required
             />
+        </div>
+    )
+}
+export const Loader: React.FC = () => {
+    const { sending, messageSent } = useComps()
+    return (
+        <div className=" absolute flex flex-col justify-center items-center">
+            {sending && <LoaderComp />}
+            {messageSent && <Confirmation />}
         </div>
     )
 }
