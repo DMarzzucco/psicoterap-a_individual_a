@@ -20,7 +20,7 @@ export interface SlideProps {
 export interface CompleteFormProp {
     htmlFor: string;
     title: string;
-    name: string;
+    // name?: string;
     placeholder: string
 }
 export interface BoxProp {

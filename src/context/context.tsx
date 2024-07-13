@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useRef, useState } from "react";
 import { AuthProv, useContextProp } from "../interfaces/interfaces";
 import emailjs from "@emailjs/browser"
+import { sendEmailjs } from "../api/SendEmail";
 
 export const AuthContext = createContext<useContextProp | undefined>(undefined)
 
@@ -21,20 +22,21 @@ const AuthProvider: React.FC<AuthProv> = ({ children }) => {
 
     const sendEmail = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!reForm.current) {
+            return
+        }
         setSending(true);
-        const serviceID = "service_xhmxkjl";
-        const template = "template_7yi1umj";
-        const key = "iT8BqbWUbZqyQKCa9";
+
+        // const serviceID = "service_xhmxkjl";
+        // const template = "template_7yi1umj";
+        // const key = "iT8BqbWUbZqyQKCa9";
         try {
-            if (reForm.current) {
-                await emailjs.sendForm(serviceID, template, reForm.current, key)
-                setMessageSent(true)
-                console.log("Mensaje enviado ")
-                const timer = setTimeout(() => setMessageSent(false), 1000)
-                return () => clearTimeout(timer)
-            }
-            console.log("el error esta en la condicional de la linea 28")
-            throw new Error
+            // await emailjs.sendForm(serviceID, template, reForm.current, key)
+            await sendEmailjs(reForm.current)
+            setMessageSent(true)
+            console.log("Mensaje enviado ")
+            const timer = setTimeout(() => setMessageSent(false), 1000)
+            return () => clearTimeout(timer)
         } catch (error) {
             console.log(error)
             throw new Error
@@ -45,9 +47,7 @@ const AuthProvider: React.FC<AuthProv> = ({ children }) => {
 
     const handleButton = (op: "open" | "close") => {
         setOpenForm(() => {
-            if (op === "open") {
-                return true;
-            }
+            if (op === "open") { return true; }
             return false
         })
     }

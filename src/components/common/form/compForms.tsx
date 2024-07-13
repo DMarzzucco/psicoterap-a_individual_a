@@ -2,38 +2,41 @@ import React from "react"
 import { useComps } from "../../../context/context"
 import { CompleteFormProp } from "../../../interfaces/interfaces"
 import { Confirmation, LoaderComp } from "./loader"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faXmark } from "../../../assets/img"
 
 export const FormButton: React.FC = () => {
     const { handleButton } = useComps()
     return (
-        <button onClick={() => { handleButton("close") }}>
-            cerrar
+        <button className="right-1 absolute top-1 p-3" onClick={() => { handleButton("close") }}>
+            <FontAwesomeIcon icon={faXmark} />
         </button>
     )
 }
 export const TextareaForm: React.FC = () => {
     return (
-        <div>
-            <label htmlFor="message">Mensaje</label>
+        <div className="flex flex-col items-start">
+            <label htmlFor="message" className="font-bold">Mensaje</label>
             <textarea
                 className="p-2 rounded-lg my-2 border border-slate-400 text-slate-300"
-                name="message"
+                // name="message"
                 placeholder="Mensaje"
                 id=""
-                required />
+                // required
+            />
         </div>
     )
 }
-export const CompletForm: React.FC<CompleteFormProp> = ({ htmlFor, title, name, placeholder }) => {
+export const CompletForm: React.FC<CompleteFormProp> = ({ htmlFor, title, placeholder }) => {
     return (
-        <div>
-            <label htmlFor={htmlFor}>{title}</label>
+        <div className="flex flex-col items-start">
+            <label htmlFor={htmlFor} className="font-bold">{title}</label>
             <input
                 className="p-2 rounded-lg my-2 border border-slate-400 text-slate-300"
                 type="text"
-                name={name}
+                // name={name}
                 placeholder={placeholder}
-                required
+                // required
             />
         </div>
     )
@@ -43,6 +46,7 @@ export const Loader: React.FC = () => {
     return (
         <div className=" absolute flex flex-col justify-center items-center">
             {sending && <LoaderComp />}
+            {/* <Confirmation /> */}
             {messageSent && <Confirmation />}
         </div>
     )

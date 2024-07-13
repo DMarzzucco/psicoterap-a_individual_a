@@ -12,6 +12,7 @@ export default {
       width: {
         350: "350px",
         300: "300px",
+        250: "250px",
       }
     },
   },
