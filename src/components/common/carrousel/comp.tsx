@@ -1,34 +1,40 @@
-import { faChevronLeft, faChevronRight } from "../../../assets/img"
-import React, { useState } from "react"
-import { BoxProp } from "../../../interfaces/interfaces"
-import { slides } from "../../func/items"
-import { SlidButton } from "../../assets/assets"
+import React from "react"
+import { slides } from "../../func/items";
+import { useComps } from "../../../context/context"
 
-export const BoxSlider: React.FC<BoxProp> = ({ children }) => {
-    const [curr, setCurr] = useState<number>(0)
-
-    const Sld = (op: "next" | "prev") => {
-        setCurr(prev => {
-            const index = op === "next" ?
-                (prev === slides.length - 1 ? 0 : prev + 1) :
-                (prev === 0 ? slides.length - 1 : prev - 1)
-            return index
-
-        })
-    }
+export const ButtonsTabs: React.FC = () => {
+    const { curr, setCurr } = useComps()
     return (
-        <div className="w-350 overflow-hidden relativ my-3 ">
-            <div
-                className="
-             w-full flex flex-row justify-center items-center transition-transform ease-out 
-             duration-700
-             " style={{ transform: `translateX(-${curr * 30}%)` }}>
-                {children}
-            </div>
-            <div className="relative inset-0">
-                <SlidButton icon={faChevronLeft} click={() => { Sld("prev") }} />
-                <SlidButton icon={faChevronRight} click={() => { Sld("next") }} />
-            </div>
+        <div className="flex flex-row justify-center items-center">
+            {slides.map((slide, index) => (
+                <button
+                    key={slide.id}
+                    className={curr === index ? "active:" : ""}
+                    onClick={() => setCurr(index)}
+                >
+                    {slide.title}
+                </button>
+            ))}
+        </div>
+    )
+}
+export const TabsCont: React.FC = () => {
+    const { curr } = useComps()
+    return (
+        <div className="flex flex-col justify-center items-center">
+            {slides.map((slide, index) => curr === index && (
+                <div key={slide.id}>
+                    <h2>{slide.title}</h2>
+                    <ul>
+                        {Object.keys(slide).map((key) => {
+                            if (key.startsWith("text")) {
+                                return <li key={key}>{slide[key]}</li>
+                            }
+                            return null
+                        })}
+                    </ul>
+                </div>
+            ))}
         </div>
     )
 }

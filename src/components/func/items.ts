@@ -21,7 +21,4 @@ export const slides: SlideProps[] = [
         text1: "Consultas presenciales",
         text2: "Consultas remotas (videollamadas)",
     },
-    // 
-    
-
 ]

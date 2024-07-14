@@ -19,24 +19,24 @@ export const TextareaForm: React.FC = () => {
             <label htmlFor="message" className="font-bold">Mensaje</label>
             <textarea
                 className="p-2 rounded-lg my-2 border border-slate-400 text-slate-300"
-                // name="message"
+                name="message"
                 placeholder="Mensaje"
                 id=""
-                // required
+                required
             />
         </div>
     )
 }
-export const CompletForm: React.FC<CompleteFormProp> = ({ htmlFor, title, placeholder }) => {
+export const CompletForm: React.FC<CompleteFormProp> = ({ htmlFor, title, placeholder, name }) => {
     return (
         <div className="flex flex-col items-start">
             <label htmlFor={htmlFor} className="font-bold">{title}</label>
             <input
                 className="p-2 rounded-lg my-2 border border-slate-400 text-slate-300"
                 type="text"
-                // name={name}
+                name={name}
                 placeholder={placeholder}
-                // required
+                required
             />
         </div>
     )
@@ -46,7 +46,6 @@ export const Loader: React.FC = () => {
     return (
         <div className=" absolute flex flex-col justify-center items-center">
             {sending && <LoaderComp />}
-            {/* <Confirmation /> */}
             {messageSent && <Confirmation />}
         </div>
     )

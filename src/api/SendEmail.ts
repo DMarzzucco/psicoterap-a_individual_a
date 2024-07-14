@@ -9,7 +9,7 @@ export const sendEmailjs = async (form: HTMLFormElement) => {
     formData.append('user_id', userID);
 
     try {
-        const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        const res = await fetch('https://api.emailjs.com/api/v1.0/email/send-form', {
             method: 'POST',
             body: formData
         });

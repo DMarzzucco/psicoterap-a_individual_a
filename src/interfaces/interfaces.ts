@@ -13,23 +13,13 @@ export interface LinkFProps {
 export interface SlideProps {
     id: number;
     title: string;
-    text1: string;
-    text2: string;
-    text3?: string;
+    [key: string]: string | number;
 }
 export interface CompleteFormProp {
     htmlFor: string;
     title: string;
-    // name?: string;
+    name: string;
     placeholder: string
-}
-export interface BoxProp {
-    children: React.ReactNode
-    slides: SlideProps[]
-}
-export interface SlideBtn {
-    click: () => void;
-    icon: IconDefinition;
 }
 export interface infProps {
     icon: IconDefinition;
@@ -37,12 +27,12 @@ export interface infProps {
 }
 export interface AuthProv { children: JSX.Element }
 export interface useContextProp {
-    user?: string
-    openForm: boolean
+    openForm: boolean;
+    curr: number;
+    setCurr: (index: number) => void;
     handleButton: (op: "open" | "close") => void;
     sendEmail: (e: React.FormEvent) => void;
     reForm: React.RefObject<HTMLFormElement>;
-    // temporal
     messageSent: boolean;
     sending: boolean;
 }

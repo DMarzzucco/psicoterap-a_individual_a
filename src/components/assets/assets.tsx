@@ -45,12 +45,3 @@ export const ItemsInf: React.FC<infProps> = ({ icon, title }) => {
     )
 }
 //////////
-
-// }}}}
-export const SlidButton: React.FC<SlideBtn> = ({ click, icon }) => {
-    return (
-        <button onClick={click}>
-            <FontAwesomeIcon icon={icon} />
-        </button>
-    )
-}
