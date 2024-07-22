@@ -8,7 +8,7 @@ import { faXmark } from "../../../assets/img"
 export const FormButton: React.FC = () => {
     const { handleButton } = useComps()
     return (
-        <button className="right-1 absolute top-1 p-3" onClick={() => { handleButton("close") }}>
+        <button className="right-1 absolute top-1 p-3" onClick={() => { handleButton("closeInput") }}>
             <FontAwesomeIcon icon={faXmark} />
         </button>
     )

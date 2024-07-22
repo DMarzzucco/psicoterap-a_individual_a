@@ -28,11 +28,13 @@ export interface infProps {
 export interface AuthProv { children: JSX.Element }
 export interface useContextProp {
     openForm: boolean;
-    curr: number;
-    setCurr: (index: number) => void;
-    handleButton: (op: "open" | "close") => void;
-    sendEmail: (e: React.FormEvent) => void;
-    reForm: React.RefObject<HTMLFormElement>;
     messageSent: boolean;
     sending: boolean;
+    table:boolean;
+    // --><><--
+    curr: number;
+    setCurr: (index: number) => void;
+    handleButton: (op: "input" | "closeInput" | "table" | "closeTable") => void;
+    sendEmail: (e: React.FormEvent) => void;
+    reForm: React.RefObject<HTMLFormElement>;
 }

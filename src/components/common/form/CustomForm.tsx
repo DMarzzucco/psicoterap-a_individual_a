@@ -1,7 +1,7 @@
 import { useComps } from "../../../context/context";
 import { CompletForm, FormButton, Loader, TextareaForm } from "./compForms";
 
-function Form() {
+function CustomForm() {
     const { sendEmail, reForm } = useComps()
     return (
         <div className="rounded-xl border border-slate-400 absolute w-300 flex flex-col bg-slate-800 p-2 justify-center items-center">
@@ -42,4 +42,4 @@ function Form() {
     )
 }
 
-export default Form;
+export default CustomForm;

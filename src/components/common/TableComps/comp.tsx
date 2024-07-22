@@ -5,7 +5,7 @@ import { useComps } from "../../../context/context"
 export const ButtonsTabs: React.FC = () => {
     const { curr, setCurr } = useComps()
     return (
-        <div className="flex flex-row justify-center items-center">
+        <div className="flex flex-row justify-center items-center bg-blackGrey">
             {slides.map((slide, index) => (
                 <button
                     key={slide.id}
@@ -21,11 +21,11 @@ export const ButtonsTabs: React.FC = () => {
 export const TabsCont: React.FC = () => {
     const { curr } = useComps()
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center bg-slate-300 text-slate-800 w-full h-200">
             {slides.map((slide, index) => curr === index && (
                 <div key={slide.id}>
-                    <h2>{slide.title}</h2>
-                    <ul>
+                    <h2 className="text-2xl font-bold">{slide.title}</h2>
+                    <ul className="list-disc my-1 w-200">
                         {Object.keys(slide).map((key) => {
                             if (key.startsWith("text")) {
                                 return <li key={key}>{slide[key]}</li>

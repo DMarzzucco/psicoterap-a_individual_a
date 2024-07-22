@@ -1,5 +1,5 @@
 import React from "react";
-import { gridProps, infProps, LinkFProps, SlideBtn } from "../../interfaces/interfaces";
+import { gridProps, infProps, LinkFProps } from "../../interfaces/interfaces";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -15,7 +15,7 @@ export const TitleComp: React.FC<gridProps> = ({ header, sub }) => {
 
 export const Profile: React.FC<gridProps> = ({ img, header, sub }) => {
     return (
-        <div className="flex p-3 bg-slate-300 rounded-2xl flex-row justify-start items-center w-auto">
+        <div className="flex p-3 bg-slate-300 rounded-2xl flex-row justify-start items-center w-auto cursor-pointer hover:bg-slate-400">
             <img src={img} alt=""
                 width={60}
                 className="rounded-full mx-2"

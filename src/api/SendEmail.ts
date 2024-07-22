@@ -17,7 +17,6 @@ export const sendEmailjs = async (form: HTMLFormElement) => {
             throw new Error('Fallo al enviar el correo (linea 17)')
         }
         console.log("Mensaje enviado")
-
     } catch (error) {
         console.error('Error', error)
         throw error
