@@ -2,7 +2,7 @@ import { profileLogo } from "../../../../assets/img"
 
 const Profile: React.FC = () => {
     return (
-        <div className="flex p-3 bg-slate-300 rounded-2xl flex-row justify-start items-center w-auto cursor-pointer hover:bg-slate-400">
+        <div className="flex p-3 flex-row justify-start items-center w-auto cursor-pointer ">
             <img src={profileLogo} alt=""
                 width={60}
                 className="rounded-full mx-2"

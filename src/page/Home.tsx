@@ -1,4 +1,4 @@
-import { TitleComp, BaseProfile } from "../components/Profile";
+import { TitleComp, BaseProfile } from "../components";
 
 function Home() {
     return (

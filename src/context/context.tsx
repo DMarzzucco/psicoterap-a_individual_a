@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useRef, useState } from "react";
-import { AuthProv, useContextProp } from "../interfaces/interfaces";
+import { AuthProv, useContextProp } from "../interfaces";
 import { sendEmailjs } from "../api/SendEmail";
 
 export const AuthContext = createContext<useContextProp | undefined>(undefined)

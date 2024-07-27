@@ -1,8 +1,8 @@
 import React from "react";
-import { ButtonCloseProps, infProps, LinkFProps } from "../../interfaces/interfaces";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "../../assets/img"
+import { ButtonCloseProps, infProps, LinkFProps } from "../../interfaces";
 
 const LinkFooter: React.FC<LinkFProps> = ({ path, title }) => {
     return (

@@ -1,9 +1,17 @@
-import { ActionProp } from "../../../../../../interfaces/interfaces"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ActionProp } from "../../../../../../interfaces"
 
-const SchemaButton: React.FC<ActionProp> = ({ click, title, children, context }) => {
+const SchemaButton: React.FC<ActionProp> = ({ click, icon, children, context, title }) => {
     return (
         <>
-            {context ? null : <button onClick={click}>{title}</button>}
+            {context ? null :
+                <button
+                    className="mx-2 flex flex-col justify-center items-center"
+                    onClick={click}>
+                    <FontAwesomeIcon icon={icon} />
+                    <p className="text-xs">{title}</p>
+                </button>
+            }
             {context ? children : null}
         </>
     )

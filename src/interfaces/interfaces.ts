@@ -4,9 +4,10 @@ import React from "react";
 export interface ButtonCloseProps { click: () => void; }
 export interface ActionProp {
     click: () => void;
+    icon: IconDefinition;
+    children: React.ReactNode;
+    context: Boolean;
     title: string;
-    children: React.ReactNode
-    context: Boolean
 }
 
 export interface LinkFProps {
