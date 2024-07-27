@@ -1,6 +1,6 @@
 import React from "react"
-import { slides } from "../../func/items";
-import { useComps } from "../../../context/context"
+import { slides } from "../../../../../../func/items";
+import { useComps } from "../../../../../../../context/context"
 
 export const ButtonsTabs: React.FC = () => {
     const { curr, setCurr } = useComps()
@@ -38,3 +38,4 @@ export const TabsCont: React.FC = () => {
         </div>
     )
 }
+

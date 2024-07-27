@@ -1,11 +1,14 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import React from "react";
 
-export interface gridProps {
-    img?: string;
-    header: string;
-    sub: string
+export interface ButtonCloseProps { click: () => void; }
+export interface ActionProp {
+    click: () => void;
+    title: string;
+    children: React.ReactNode
+    context: Boolean
 }
+
 export interface LinkFProps {
     path: string;
     title: string
@@ -30,7 +33,7 @@ export interface useContextProp {
     openForm: boolean;
     messageSent: boolean;
     sending: boolean;
-    table:boolean;
+    table: boolean;
     // --><><--
     curr: number;
     setCurr: (index: number) => void;

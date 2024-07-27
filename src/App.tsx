@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from "./page";
-import { Footer, Header } from "./components/common";
+import { Header, Footer } from "./components/common/common"
 import { AuthProvider } from "./context";
 
 function App() {

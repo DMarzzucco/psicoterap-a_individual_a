@@ -1,5 +1,5 @@
 import { faEnvelope, faLocationDot, faPhone, headerlogo } from "../../assets/img"
-import { ItemsInf, LinkFooter } from "../assets/assets";
+import { ItemsInf, LinkFooter } from "./common";
 
 function Footer() {
     return (
