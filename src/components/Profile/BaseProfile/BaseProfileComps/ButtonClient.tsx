@@ -9,14 +9,6 @@ const ButtonClient: React.FC = () => {
         <div className="flex justify-center items-center">
             <div className="flex flex-row justify-center items-center">
                 <SchemaButton
-                    title="Contactar"
-                    icon={faList}
-                    click={() => { handleButton('input') }}
-                    context={openForm}
-                >
-                    {openForm && <CustomForm />}
-                </SchemaButton>
-                <SchemaButton
                     title="Servicios"
                     icon={faAddressCard}
                     click={() => { handleButton('table') }}
@@ -24,7 +16,14 @@ const ButtonClient: React.FC = () => {
                 >
                     {table && <TableComps />}
                 </SchemaButton>
-
+                <SchemaButton
+                    title="Contactar"
+                    icon={faList}
+                    click={() => { handleButton('input') }}
+                    context={openForm}
+                >
+                    {openForm && <CustomForm />}
+                </SchemaButton>
             </div>
         </div>
     )

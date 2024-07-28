@@ -3,24 +3,9 @@ import { ItemsInf, LinkFooter } from "./common";
 
 function Footer() {
     return (
-        <footer className="flex bg-lightDark text-slate-400 flex-col justify-center items-center w-full ">
-            <div className="grid grid-cols-2 py-3 justify-center items-center">
-                <div className="flex flex-col justify-center items-center">
-                    <figure>
-                        <img width={290} src={headerlogo} alt="" />
-                    </figure>
-                    <div className="flex flex-row justify-center items-center">
-                        <LinkFooter
-                            path="https://github.com/DMarzzucco/sorciere.git"
-                            title="Source"
-                        />
-                        <LinkFooter
-                            path="https://systemarzz.netlify.app/"
-                            title="SysteMarzz"
-                        />
-                    </div>
-                </div>
-                <div className="border-l border-slate-500 pl-2 flex flex-col justify-start items-center">
+        <footer className="flex flex-col justify-center items-center w-full bg-lightDark text-slate-400">
+            <div className="grid grid-cols-2 py-3 justify-center items-center 456:flex 456:flex-col">
+                <div className="border-r 456:border-none border-slate-500 pr-2 flex flex-col justify-start items-center">
                     <h2 className="font-bold text-2xl p-1">CONTACTO</h2>
                     <div className="flex flex-col  w-auto ">
                         <ItemsInf
@@ -36,6 +21,21 @@ function Footer() {
                             title="maricelsovran@gmail.com"
                         />
 
+                    </div>
+                </div>
+                <div className="flex flex-col justify-center items-center">
+                    <figure>
+                        <img width={290} src={headerlogo} alt="" />
+                    </figure>
+                    <div className="flex flex-row justify-center items-center">
+                        <LinkFooter
+                            path="https://github.com/DMarzzucco/sorciere.git"
+                            title="Source"
+                        />
+                        <LinkFooter
+                            path="https://systemarzz.netlify.app/"
+                            title="SysteMarzz"
+                        />
                     </div>
                 </div>
             </div>

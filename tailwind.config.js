@@ -10,15 +10,18 @@ export default {
         lightDark: "#1b2024",
         blackGrey: "#1a1a1a"
       },
+      screens: {
+        '456': { 'max': "456px" },
+      },
       width: {
         350: "350px",
         300: "300px",
         250: "250px",
         200: "200px",
       },
-      height:{
-        300:"300px",
-        200:"200px",
+      height: {
+        300: "300px",
+        200: "200px",
       }
     },
   },
