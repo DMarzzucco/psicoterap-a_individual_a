@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core"
+import { ButtonType } from "../types/type";
 
 export interface ButtonCloseProps { click: () => void; }
 
@@ -34,13 +35,13 @@ export interface AuthProp { children: ReactNode }
 
 export interface useContextProp {
     use?: string
-    // openForm: boolean;
-    // messageSent: boolean;
-    // sending: boolean;
-    // table: boolean;
-    // curr: number;
-    // setCurr: (index: number) => void;
-    // handleButton: (op: "input" | "closeInput" | "table" | "closeTable") => void;
-    // sendEmail: (e: React.FormEvent) => void;
-    // reForm: React.RefObject<HTMLFormElement>;
+    openForm: boolean;
+    messageSent: boolean;
+    sending: boolean;
+    table: boolean;
+    curr: number;
+    setCurr: (index: number) => void;
+    handleButton: (op: ButtonType) => void;
+    sendEmail: (e: React.FormEvent) => void;
+    reForm: React.RefObject<HTMLFormElement>;
 }

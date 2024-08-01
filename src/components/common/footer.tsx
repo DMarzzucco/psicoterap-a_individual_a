@@ -1,3 +1,48 @@
+import { faPhone, faLocationDot, faEnvelope, headerlogo } from "@/assets"
+import { LinkFooter, ItemsInf } from "@/components"
+import Image from "next/image"
+
 export default function Footer (){
-    return (<></>)
+    return (
+        <footer className="flex flex-col justify-center items-center w-full bg-lightDark text-slate-400">
+        <div className="grid grid-cols-2 py-3 justify-center items-center 456:flex 456:flex-col">
+            <div className="border-r 456:border-none border-slate-500 pr-2 flex flex-col justify-start items-center">
+                <h2 className="font-bold text-2xl p-1">CONTACTO</h2>
+                <div className="flex flex-col  w-auto ">
+                    <ItemsInf
+                        icon={faPhone}
+                        title="+54 9 3463 41-1187"
+                    />
+                    <ItemsInf
+                        icon={faLocationDot}
+                        title="Alvear 686 - Venado Tuerto, Santa Fe, Argentina"
+                    />
+                    <ItemsInf
+                        icon={faEnvelope}
+                        title="maricelsovran@gmail.com"
+                    />
+
+                </div>
+            </div>
+            <div className="flex flex-col justify-center items-center">
+                <figure>
+                    <Image width={290} src={headerlogo} alt="" />
+                </figure>
+                <div className="flex flex-row justify-center items-center">
+                    <LinkFooter
+                        path="https://github.com/DMarzzucco/sorciere.git"
+                        title="Source"
+                    />
+                    <LinkFooter
+                        path="https://systemarzz.netlify.app/"
+                        title="SysteMarzz"
+                    />
+                </div>
+            </div>
+        </div>
+        <div className="grupo3">
+            <small>&copy; 2023 <b>Psicoterapia Individual-SysteMarzz</b> - Todos los Derechos Reservados. </small>
+        </div>
+    </footer>
+    )
 }
