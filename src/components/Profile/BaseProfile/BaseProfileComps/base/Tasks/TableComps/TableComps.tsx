@@ -1,3 +1,4 @@
+"use client";
 import { ButtonClose } from "@/components/common/common";
 import { ButtonsTabs, TabsCont } from "./comp";
 import { useAuth } from "@/context";

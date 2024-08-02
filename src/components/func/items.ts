@@ -1,4 +1,4 @@
-import { SlideProps } from "@/ts"
+import { BooleansProps, SlideProps } from "@/ts"
 
 export const slides: SlideProps[] = [
     {
@@ -22,3 +22,10 @@ export const slides: SlideProps[] = [
         text2: "Consultas remotas (videollamadas)",
     },
 ]
+export const BooleansItems: BooleansProps = {
+    form: false,
+    table: false,
+    confirmation: false,
+    loading: false
+
+}

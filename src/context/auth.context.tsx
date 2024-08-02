@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useReducer } from "react";
 import { useContextProp, AuthProp, ButtonType } from "@/ts";
 import { sendEmailjs } from "@/app/api/SendEmail";
+import { BooleansItems } from "@/components";
+import { Reducer } from "@/Reducer";
 
 export const AuthContext = React.createContext<useContextProp | undefined>(undefined)
 
@@ -15,51 +17,51 @@ export const useAuth = () => {
 const AuthProvider: React.FC<AuthProp> = ({ children }) => {
 
     const [curr, setCurr] = useState<number>(0);
-    const [openForm, setOpenForm] = useState<boolean>(false)
-    const [messageSent, setMessageSent] = useState<boolean>(false)
-    const [sending, setSending] = useState<boolean>(false)
-    const [table, setTable] = useState<boolean>(false)
+    const [state, dispatch] = useReducer(Reducer, BooleansItems)
 
     const reForm = useRef<HTMLFormElement>(null)
 
     const sendEmail = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!reForm.current) { return }
-        setSending(true);
+        dispatch({ type: "loading" })
         try {
             await sendEmailjs(reForm.current)
-            setMessageSent(true)
+            dispatch({ type: "confirmation" })
             console.log("Emial was sending")
-            const timer = setTimeout(() => { setMessageSent(false), window.location.reload }, 1000)
+            const timer = setTimeout(() => {
+                dispatch({ type: "close_confirmation" }),
+                    window.location.reload
+            }, 1000)
             return () => clearTimeout(timer)
         } catch (error: any) {
             throw new Error(`${error.message}`)
         } finally {
-            setSending(false);
+            dispatch({ type: "loading_end" })
         }
     }
 
     const handleButton = (op: ButtonType) => {
         switch (op.type) {
             case "input":
-                setOpenForm(true);
-                setTable(false);
+                dispatch({ type: "form" })
                 break;
             case "closeInput":
-                setOpenForm(false);
+                dispatch({ type: "close_form" })
                 break;
             case "table":
-                setTable(true)
-                setOpenForm(false)
+                dispatch({ type: "table" })
                 break;
             case "closeTable":
-                setTable(false)
+                dispatch({ type: "close_table" })
                 break;
+            default:
+                throw new Error(`${Error}`)
         }
     };
 
     return (
-        <AuthContext.Provider value={{ handleButton, sendEmail, table, sending, messageSent, curr, openForm, setCurr, reForm }}>
+        <AuthContext.Provider value={{ handleButton, sendEmail, curr, setCurr, reForm, state }}>
             {children}
         </AuthContext.Provider>
     )

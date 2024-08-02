@@ -1,24 +1,32 @@
-export const sendEmailjs = async (form: HTMLFormElement) => {
-    const serviceID = "service_xhmxkjl";
-    const templateID = "template_7yi1umj";
-    const userID = "iT8BqbWUbZqyQKCa9";
+import { NextRequest, NextResponse } from "next/server";
 
-    const formData = new FormData(form);
-    formData.append('servide_id', serviceID)
-    formData.append('templete_id', templateID)
-    formData.append('user_id', userID)
+export const sendEmailjs = async (req: NextRequest) => {
+    const formData = await req.json();
 
-    try{
-        const res = await fetch("https://api.emailjs.com/api/v1.0/email/send-form",{
-            method:"POST",
-            body: formData
+    const serviceID = process.env.SERVICE || "service_xhmxkjl";
+    const templateID = process.env.TEMPLATE || "template_7yi1umj";
+    const userID = process.env.USER || "iT8BqbWUbZqyQKCa9";
+
+    try {
+        const response = await fetch("https://api.emailjs.com/api/v1.0/email/send-form", {
+            method: "POST",
+            body: JSON.stringify({
+                ...formData,
+                service_id: serviceID,
+                template_id: templateID,
+                user_id: userID
+            }),
+            headers: {
+                'Content-Type': "application/json"
+            }
         })
-        if (!res.ok){
-            throw new Error ('Fail to send email')
+        if (!response.ok) {
+            const erroData = await response.json();
+            return NextResponse.json({ message: erroData?.message || "failed to send" }, { status: response.status })
         }
-        console.log ("Email was sending")
-    }catch(error:any){
-        console.error(error.message)
-        throw new Error (`${error.message}`)
+        return NextResponse.json({ message: "Email was send" }, { status: 200 })
+
+    } catch (error: any) {
+        return NextResponse.json({ message: `Error: ${error.message}` }, { status: 500 })
     }
 };

@@ -1,3 +1,4 @@
+"use client";
 import { slides } from "@/components"
 import { useAuth } from "@/context"
 import React from "react"

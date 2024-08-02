@@ -27,18 +27,21 @@ export interface CompleteFormProps {
     name: string;
     placeholder: string;
 }
-export interface infProps{
-    icon:IconDefinition;
-    title:string;
+export interface infProps {
+    icon: IconDefinition;
+    title: string;
+}
+export interface BooleansProps {
+    form: boolean;
+    table: boolean;
+    confirmation: boolean;
+    loading: boolean;
 }
 export interface AuthProp { children: ReactNode }
 
 export interface useContextProp {
     use?: string
-    openForm: boolean;
-    messageSent: boolean;
-    sending: boolean;
-    table: boolean;
+    state:BooleansProps;
     curr: number;
     setCurr: (index: number) => void;
     handleButton: (op: ButtonType) => void;
