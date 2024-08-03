@@ -1,4 +1,4 @@
-import { BooleansProps, SlideProps } from "@/ts"
+import { BooleansProps, Dates, SlideProps } from "@/ts"
 
 export const slides: SlideProps[] = [
     {
@@ -28,4 +28,12 @@ export const BooleansItems: BooleansProps = {
     confirmation: false,
     loading: false
 
+}
+
+export const DateTransferens: Dates = {
+    name: "",
+    phone: "",
+    mail: "",
+    context: "",
+    message: ""
 }

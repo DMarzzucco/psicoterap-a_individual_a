@@ -1,14 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export const sendEmailjs = async (req: NextRequest) => {
+export async function POST (req: NextRequest) {
     const formData = await req.json();
 
     const serviceID = process.env.SERVICE || "service_xhmxkjl";
     const templateID = process.env.TEMPLATE || "template_7yi1umj";
     const userID = process.env.USER || "iT8BqbWUbZqyQKCa9";
 
+    console.log (serviceID)
+    console.log (templateID)
+    console.log (userID)
+
     try {
-        const response = await fetch("https://api.emailjs.com/api/v1.0/email/send-form", {
+        const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
             method: "POST",
             body: JSON.stringify({
                 ...formData,

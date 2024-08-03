@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState, useRef, useReducer } from "react";
-import { useContextProp, AuthProp, ButtonType } from "@/ts";
-import { sendEmailjs } from "@/app/api/SendEmail";
-import { BooleansItems } from "@/components";
+import { useContextProp, AuthProp, ButtonType, Dates } from "@/ts";
+import { BooleansItems, DateTransferens } from "@/components";
 import { Reducer } from "@/Reducer";
+// import { Request } from "@/app/api/api.fetch";
+import { Email } from "@/libs/email";
 
 export const AuthContext = React.createContext<useContextProp | undefined>(undefined)
 
@@ -18,15 +19,24 @@ const AuthProvider: React.FC<AuthProp> = ({ children }) => {
 
     const [curr, setCurr] = useState<number>(0);
     const [state, dispatch] = useReducer(Reducer, BooleansItems)
+    const [date, setDate] = useState<Dates>(DateTransferens)
 
     const reForm = useRef<HTMLFormElement>(null)
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value, type } = e.target;
+        setDate(prev => ({
+            ...prev,
+            [name]: type === "number" ? Number(value) : value
+        }))
+    }
+
+
     const sendEmail = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!reForm.current) { return }
-        dispatch({ type: "loading" })
         try {
-            await sendEmailjs(reForm.current)
+            // await Request(date)
+            await Email(date)
             dispatch({ type: "confirmation" })
             console.log("Emial was sending")
             const timer = setTimeout(() => {
@@ -61,7 +71,10 @@ const AuthProvider: React.FC<AuthProp> = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ handleButton, sendEmail, curr, setCurr, reForm, state }}>
+        <AuthContext.Provider value={{
+            handleButton, sendEmail, curr, setCurr, state, handleChange, date,
+            reForm
+        }}>
             {children}
         </AuthContext.Provider>
     )

@@ -4,6 +4,13 @@ import { ButtonType } from "../types/type";
 
 export interface ButtonCloseProps { click: () => void; }
 
+export interface Dates {
+    readonly name: string;
+    readonly phone: string;
+    readonly mail: string;
+    readonly context: string;
+    readonly message: string
+}
 export interface ActionProp {
     click: () => void;
     icon: IconDefinition
@@ -26,6 +33,7 @@ export interface CompleteFormProps {
     title: string;
     name: string;
     placeholder: string;
+    value:string | number | readonly string[] | undefined
 }
 export interface infProps {
     icon: IconDefinition;
@@ -40,11 +48,13 @@ export interface BooleansProps {
 export interface AuthProp { children: ReactNode }
 
 export interface useContextProp {
-    use?: string
-    state:BooleansProps;
+    state: BooleansProps;
     curr: number;
     setCurr: (index: number) => void;
     handleButton: (op: ButtonType) => void;
     sendEmail: (e: React.FormEvent) => void;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+    date: Dates
+
     reForm: React.RefObject<HTMLFormElement>;
 }
