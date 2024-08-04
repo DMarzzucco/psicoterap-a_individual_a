@@ -33,7 +33,7 @@ export interface CompleteFormProps {
     title: string;
     name: string;
     placeholder: string;
-    value:string | number | readonly string[] | undefined
+    // value:string | number | readonly string[] | undefined
 }
 export interface infProps {
     icon: IconDefinition;
@@ -52,9 +52,4 @@ export interface useContextProp {
     curr: number;
     setCurr: (index: number) => void;
     handleButton: (op: ButtonType) => void;
-    sendEmail: (e: React.FormEvent) => void;
-    handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-    date: Dates
-
-    reForm: React.RefObject<HTMLFormElement>;
 }

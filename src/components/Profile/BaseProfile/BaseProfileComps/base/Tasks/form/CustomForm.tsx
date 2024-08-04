@@ -1,43 +1,40 @@
 import { useAuth } from "@/context";
 import { TemporalComps, CompleteInput, CompleteTextarea } from "./compsForm";
 import { ButtonClose } from "@/components";
+import { sendAction } from "@/server/actions";
 
 function CustomForm() {
-    const { sendEmail, handleButton, date } = useAuth()
+    const { handleButton, } = useAuth()
     return (
         <div className="rounded-xl border border-slate-400 absolute w-300  bg-slate-800 p-2 ">
-            <ButtonClose click={() => { handleButton({type:"closeInput"}) }} />
+            <ButtonClose click={() => { handleButton({ type: "closeInput" }) }} />
             <div className="flex flex-col justify-center items-center">
                 <form
-                    onSubmit={sendEmail}
+                    action={sendAction}
                     className="flex flex-col justify-center items-center w-full">
                     <CompleteInput
                         htmlFor="name"
                         title="Nombre Completo"
                         name="name"
                         placeholder="Nombre & Apellido"
-                        value={date.name}
                     />
                     <CompleteInput
                         htmlFor="phone"
                         title="Numero de Teléfono"
                         name="phone"
                         placeholder="Numero de Teléfono"
-                        value={date.phone}
                     />
                     <CompleteInput
                         htmlFor="mail"
                         title="Correo Electronico"
                         name="mail"
                         placeholder="Correo Electronico"
-                        value={date.mail}
                     />
                     <CompleteInput
                         htmlFor="context"
                         title="Contexto"
                         name="context"
                         placeholder="Contexto"
-                        value={date.context}
                     />
                     <CompleteTextarea />
                     <button type="submit" value="Enviar" className='btSend'>Enviar</button>

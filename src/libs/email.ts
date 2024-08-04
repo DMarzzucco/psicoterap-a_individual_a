@@ -1,25 +1,34 @@
-import { Dates } from "@/ts"
-import emailjs from "@emailjs/browser"
+import { Dates } from "@/ts";
 
-export const Email = async (formData: Dates) => {
+const service_id = process.env.NEXT_PUBLIC_EMAILJS_SERVICE!;
+const template_id = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE!;
+const user_id = process.env.NEXT_PUBLIC_EMAILJS_USER!;
 
-    const formDataRecord: Record<string, any> = {
-        name: formData.name,
-        phone: formData.phone,
-        mail: formData.mail,
-        context: formData.context,
-        message: formData.message
-    };
+export default async function sendEmail(date: Dates) {
+    const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            service_id: service_id,
+            template_id: template_id,
+            user_id: user_id,
+            template_params: date
+        })
+    })
+    const resText = await response.text();
+
+    if (!response.ok) {
+        const error = await response.text()
+        throw new Error(`faild to send mail: ${error}`)
+    }
     try {
-        const response = await emailjs.send(
-
-            process.env.SERVICE as string,
-            process.env.TEMPLATE as string,
-            formDataRecord,
-            process.env.USER as string
-        )
-        return response
-    } catch (error: any) { 
-        throw new Error (`${error.message}`)
+        if (resText === "OK") {
+            console.log ("Email was sent")
+            return { message: "Email sent successfully" }
+        }
+    } catch (error: any) {
+        throw new Error(error.message)
     }
 }
