@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState, useRef, useReducer } from "react";
+import React, { useState, useReducer } from "react";
 import { useContextProp, AuthProp, ButtonType, Dates } from "@/ts";
-import { BooleansItems, DateTransferens } from "@/components";
-import { Reducer } from "@/Reducer";
+import { BooleansItems } from "@/components";
+import { Reducer } from "./Reducer";
+import { toast } from "sonner";
+import { sendEmail, parseDate } from "@/app/api";
 
 export const AuthContext = React.createContext<useContextProp | undefined>(undefined)
 
@@ -17,6 +19,25 @@ const AuthProvider: React.FC<AuthProp> = ({ children }) => {
 
     const [curr, setCurr] = useState<number>(0);
     const [state, dispatch] = useReducer(Reducer, BooleansItems)
+
+    const sendAction = async (FormData:FormData) =>{
+        const date: Dates = parseDate(FormData)
+        try{
+            await sendEmail (date)
+            return {seccues: true}
+        }catch(error:any){
+            throw new Error (`Error in send_action: ${error.message}`)
+        }
+    }
+    const formAction = async (date: FormData) => {
+        try {
+            await sendAction(date)
+            toast.success("Message was send");
+            dispatch({ type: "close_form" })
+        } catch (error: any) {
+            throw new Error(`formAction_error:${error.message}`)
+        }
+    }
 
     const handleButton = (op: ButtonType) => {
         switch (op.type) {
@@ -38,7 +59,7 @@ const AuthProvider: React.FC<AuthProp> = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ handleButton, curr, setCurr, state }}>
+        <AuthContext.Provider value={{ handleButton, curr, setCurr, state, formAction}}>
             {children}
         </AuthContext.Provider>
     )

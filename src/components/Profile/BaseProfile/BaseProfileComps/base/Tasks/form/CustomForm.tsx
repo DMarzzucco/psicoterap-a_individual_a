@@ -1,16 +1,17 @@
+"use client";
+
 import { useAuth } from "@/context";
-import { TemporalComps, CompleteInput, CompleteTextarea } from "./compsForm";
+import { CompleteInput, CompleteTextarea } from "./compsForm";
 import { ButtonClose } from "@/components";
-import { sendAction } from "@/server/actions";
 
 function CustomForm() {
-    const { handleButton, } = useAuth()
+    const { handleButton, formAction } = useAuth()
     return (
         <div className="rounded-xl border border-slate-400 absolute w-300  bg-slate-800 p-2 ">
             <ButtonClose click={() => { handleButton({ type: "closeInput" }) }} />
             <div className="flex flex-col justify-center items-center">
                 <form
-                    action={sendAction}
+                    action={formAction}
                     className="flex flex-col justify-center items-center w-full">
                     <CompleteInput
                         htmlFor="name"
@@ -39,7 +40,6 @@ function CustomForm() {
                     <CompleteTextarea />
                     <button type="submit" value="Enviar" className='btSend'>Enviar</button>
                 </form>
-                <TemporalComps />
             </div>
 
         </div>

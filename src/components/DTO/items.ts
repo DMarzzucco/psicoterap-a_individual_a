@@ -26,8 +26,7 @@ export const BooleansItems: BooleansProps = {
     form: false,
     table: false,
     confirmation: false,
-    loading: false
-
+    loading: false,
 }
 
 export const DateTransferens: Dates = {

@@ -7,9 +7,7 @@ const user_id = process.env.NEXT_PUBLIC_EMAILJS_USER!;
 export default async function sendEmail(date: Dates) {
     const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
         method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             service_id: service_id,
             template_id: template_id,
@@ -17,18 +15,19 @@ export default async function sendEmail(date: Dates) {
             template_params: date
         })
     })
-    const resText = await response.text();
+    const res_text = await response.text()
 
     if (!response.ok) {
-        const error = await response.text()
-        throw new Error(`faild to send mail: ${error}`)
+        const error: any = await response.text();
+        throw new Error(`response is not Ok: ${error.message}`)
     }
     try {
-        if (resText === "OK") {
-            console.log ("Email was sent")
-            return { message: "Email sent successfully" }
+        if (res_text === 'OK') {
+            console.log("Email was sent")
+            return { message: "Email sent" }
         }
     } catch (error: any) {
-        throw new Error(error.message)
+        throw new Error(` error in line n 30 : ${error.message}`)
     }
+
 }
