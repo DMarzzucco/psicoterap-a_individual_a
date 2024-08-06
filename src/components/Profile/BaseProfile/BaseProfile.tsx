@@ -1,3 +1,4 @@
+import React from "react";
 import { ProfileSchema, ButtonClient } from "./BaseProfileComps/Index"
 
 const BaseProfile: React.FC = () => {

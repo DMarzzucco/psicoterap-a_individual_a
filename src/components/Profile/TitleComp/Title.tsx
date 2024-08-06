@@ -1,3 +1,5 @@
+import React from "react";
+
 const TitleComp: React.FC = () => {
     return (
         <div className="flex flex-col justify-center items-start m-3">
