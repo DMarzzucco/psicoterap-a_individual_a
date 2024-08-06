@@ -46,6 +46,11 @@ export interface BooleansProps {
 }
 export interface AuthProp { children: ReactNode }
 
+export interface StateProps {
+    curr: number;
+    state: useContextProp['state']
+}
+
 export interface useContextProp {
     state: BooleansProps;
     curr: number;

@@ -1,17 +1,17 @@
 import { Dates } from "@/ts";
+import { Vars_entorn } from "./libs/vars";
 
-const service_id = process.env.NEXT_PUBLIC_EMAILJS_SERVICE!;
-const template_id = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE!;
-const user_id = process.env.NEXT_PUBLIC_EMAILJS_USER!;
+const vars = new Vars_entorn()
 
 export default async function sendEmail(date: Dates) {
     const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            service_id: service_id,
-            template_id: template_id,
-            user_id: user_id,
+            service_id: vars.service_id,
+            template_id: vars.template_id,
+            user_id: vars.user_id,
+
             template_params: date
         })
     })
@@ -29,5 +29,4 @@ export default async function sendEmail(date: Dates) {
     } catch (error: any) {
         throw new Error(` error in line n 30 : ${error.message}`)
     }
-
 }

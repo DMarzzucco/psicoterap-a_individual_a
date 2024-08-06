@@ -1,11 +1,14 @@
 "use client";
 
-import React, { useState, useReducer } from "react";
-import { useContextProp, AuthProp, ButtonType, Dates } from "@/ts";
-import { BooleansItems } from "@/components";
+import { useContextProp, AuthProp, ButtonType, BooleanAction, StateProps } from "@/ts";
+import { Object_date } from "@/components";
+import React, { Component } from "react";
 import { Reducer } from "./Reducer";
+import { Dat } from "@/app/api";
 import { toast } from "sonner";
-import { sendEmail, parseDate } from "@/app/api";
+
+const Dt = new Dat()
+const date_trans = new Object_date()
 
 export const AuthContext = React.createContext<useContextProp | undefined>(undefined)
 
@@ -15,53 +18,65 @@ export const useAuth = () => {
     return context;
 };
 
-const AuthProvider: React.FC<AuthProp> = ({ children }) => {
+export default class AtuhProvider extends Component<AuthProp, StateProps> {
 
-    const [curr, setCurr] = useState<number>(0);
-    const [state, dispatch] = useReducer(Reducer, BooleansItems)
+    private dispatch: React.Dispatch<BooleanAction>;
 
-    const sendAction = async (FormData:FormData) =>{
-        const date: Dates = parseDate(FormData)
-        try{
-            await sendEmail (date)
-            return {seccues: true}
-        }catch(error:any){
-            throw new Error (`Error in send_action: ${error.message}`)
+    constructor(props: AuthProp) {
+        super(props);
+
+        this.state = {
+            curr: 0,
+            state: date_trans.BooleansItems,
         }
-    }
-    const formAction = async (date: FormData) => {
-        try {
-            await sendAction(date)
-            toast.success("Message was send");
-            dispatch({ type: "close_form" })
-        } catch (error: any) {
-            throw new Error(`formAction_error:${error.message}`)
-        }
-    }
-
-    const handleButton = (op: ButtonType) => {
-        switch (op.type) {
-            case "input":
-                dispatch({ type: "form" })
-                break;
-            case "closeInput":
-                dispatch({ type: "close_form" })
-                break;
-            case "table":
-                dispatch({ type: "table" })
-                break;
-            case "closeTable":
-                dispatch({ type: "close_table" })
-                break;
-            default:
-                throw new Error(`${Error}`)
+        this.dispatch = (actions: BooleanAction) => {
+            this.setState((prev) => ({
+                ...prev,
+                state: Reducer(prev.state, actions)
+            }))
         }
     };
+    formAction = async (date: FormData) => {
+        try {
+            await Dt.sendActions(date);
+            toast.success("message was send");
+            this.dispatch({ type: "close_form" });
+        } catch (error: any) {
+            throw new Error(`formAction_Error: ${error.message}`)
+        }
+    }
+    handleButton = (op: ButtonType) => {
+        switch (op.type) {
+            case "input":
+                this.dispatch({ type: "form" });
+                break;
+            case "closeInput":
+                this.dispatch({ type: "close_form" });
+                break
+            case "table":
+                this.dispatch({ type: "table" });
+                break
+            case "closeTable":
+                this.dispatch({ type: "close_table" })
+                break;
+            default:
+                throw new Error(`Unhandler type: ${Error}`)
+        }
+    }
+    setCurr = (curr: number) => { this.setState({ curr }) }
 
-    return (
-        <AuthContext.Provider value={{ handleButton, curr, setCurr, state, formAction}}>
-            {children}
-        </AuthContext.Provider>
-    )
+    render() {
+        const value: useContextProp = {
+            handleButton: this.handleButton,
+            curr: this.state.curr,
+            setCurr: this.setCurr,
+            state: this.state.state,
+            formAction: this.formAction
+        }
+        return (
+            <AuthContext.Provider value={value}>
+                {this.props.children}
+            </AuthContext.Provider>
+        )
+    }
 }
-export default AuthProvider;
